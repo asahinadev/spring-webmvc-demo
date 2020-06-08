@@ -1,7 +1,8 @@
 <!DOCTYPE configuration>
 <configuration>
 
-	<property name="OUTPUT_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
+	<property name="OUTPUT_PATTERN"
+		value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
 	<property name="LOG_DIR" value="${catalina.base}/logs/demo"/>
 	<property name="ENCODING" value="UTF-8"/>
 
@@ -11,8 +12,10 @@
 		</encoder>
 	</appender>
 
-	<appender name="APPLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	<appender name="APPLOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${LOG_DIR}/application-%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>90</maxHistory>
 		</rollingPolicy>
@@ -22,11 +25,13 @@
 		</encoder>
 	</appender>
 
-	<appender name="ERRLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="ERRLOG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>ERROR</level>
 		</filter>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${LOG_DIR}/exception-%d{yyyy-MM-dd}.log</fileNamePattern>
 			<maxHistory>90</maxHistory>
 		</rollingPolicy>
@@ -35,6 +40,9 @@
 			<pattern>${OUTPUT_PATTERN}</pattern>
 		</encoder>
 	</appender>
+
+	<logger name="org.springframework" level="WARN"/>
+	<logger name="org.hibernate" level="WARN"/>
 
 	<root level="debug">
 		<appender-ref ref="STDOUT"/>
