@@ -1,4 +1,4 @@
-package jp.mirageworld.spring;
+package jp.mirageworld.spring.controller ;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
