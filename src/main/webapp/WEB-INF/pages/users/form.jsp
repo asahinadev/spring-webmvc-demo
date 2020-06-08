@@ -1,8 +1,4 @@
 <!doctype html>
-<%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="ja" class="h-100">
 <head>
 <meta charset="utf-8">
@@ -30,7 +26,7 @@
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
-main>.container-fluid {
+main>.container {
 	padding: 60px 15px 0;
 }
 
@@ -44,7 +40,8 @@ main>.container-fluid {
 }
 
 code {
-	cc font-size: 80%;
+cc
+	font-size: 80%;
 }
 </style>
 <meta name="theme-color" content="#563d7c">
@@ -88,54 +85,20 @@ code {
 
 	<!-- Begin page content -->
 	<main role="main" class="flex-shrink-0">
-		<div class="container-fluid">
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>id</th>
-						<th>username</th>
-						<th>email</th>
-						<th>created</th>
-						<th>updated</th>
-						<th>action</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>id</td>
-						<td>username</td>
-						<td>email</td>
-						<td>created</td>
-						<td>updated</td>
-						<th>
-							<!--  --> <form:form
-								action="${pageContext.request.contextPath}/users/0" method="GET">
-								<button class="btn btn-primary btn-sm">new</button>
-							</form:form> <!--  --> <form:form
-								action="${pageContext.request.contextPath}/users/0"
-								method="DELETE">
-								<button class="btn btn-danger btn-sm">del</button>
-							</form:form>
-						</th>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
-						<th><form:form
-								action="${pageContext.request.contextPath}/users/create"
-								method="GET">
-								<button class="btn btn-primary btn-sm">new</button>
-							</form:form></th>
-					</tr>
-				</tfoot>
-			</table>
-
-
+		<div class="container">
+			<h1 class="mt-5">Sticky footer with fixed navbar</h1>
+			<p class="lead">
+				Pin a footer to the bottom of the viewport in desktop browsers with
+				this custom HTML and CSS. A fixed navbar has been added with
+				<code>padding-top: 60px;</code>
+				on the
+				<code>main &gt; .container</code>
+				.
+			</p>
+			<p>
+				Back to <a href="/docs/4.5/examples/sticky-footer/">the default
+					sticky footer</a> minus the navbar.
+			</p>
 		</div>
 	</main>
 
