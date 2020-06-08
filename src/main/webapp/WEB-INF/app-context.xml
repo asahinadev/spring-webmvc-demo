@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/mvc
-        https://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/context
-        https://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans      http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context    http://www.springframework.org/schema/context/spring-context.xsd
+">
 
-    <!-- Enables the Spring MVC @Controller programming model -->
-    <mvc:annotation-driven />
+    <!-- アノテーションで設定 -->
+	<mvc:annotation-driven/>
 
-    <!-- Default Servlet -->
-    <mvc:default-servlet-handler />
+    <!-- デフォルトサーブレットハンドラ -->
+	<mvc:default-servlet-handler/>
 
-    <!-- Static Resources -->
-    <mvc:resources mapping="/static/**" location="/WEB-INF/classes/static/"/>
+    <!-- 静的リソース -->
+	<mvc:resources mapping="/static/**"
+		location="/WEB-INF/classes/static/"/>
 
-    <!-- View Technologies -->
-    <mvc:view-resolvers>
-        <mvc:jsp prefix="/WEB-INF/pages/" />
-    </mvc:view-resolvers>
+    <!-- ビューの設定 -->
+	<mvc:view-resolvers>
+		<mvc:jsp prefix="/WEB-INF/pages/"/>
+	</mvc:view-resolvers>
 
-    <context:property-placeholder location="classpath:*.properties" />
+    <!-- プロパティファイルの設定 -->
+	<context:property-placeholder
+		location="classpath:*.properties"/>
 
-    <context:component-scan base-package="jp.mirageworld.spring" />
+    <!-- スキャン対象の設定 -->
+	<context:component-scan
+		base-package="jp.mirageworld.spring"/>
 
 </beans>
