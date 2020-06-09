@@ -1,12 +1,14 @@
 package jp.mirageworld.spring.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -24,8 +26,8 @@ import lombok.Data;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer id;
 
 	@Column(nullable = false)
 	String username;
@@ -37,9 +39,14 @@ public class User {
 	String password;
 
 	@CreatedDate
+	@Column(nullable = false)
 	LocalDateTime created;
 
 	@LastModifiedDate
+	@Column(nullable = false)
 	LocalDateTime updated;
+
+	@ManyToMany(mappedBy = "users")
+	List<Role> roles;
 
 }
