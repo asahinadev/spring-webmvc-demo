@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-import org.springframework.core.Ordered;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,15 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 @DependsOn({
 		"dataSource"
 })
-public class FlywayConfig implements InitializingBean, Ordered {
+public class FlywayConfig implements InitializingBean {
 
 	@Autowired
 	DataSource dataSource;
-
-	@Override
-	public int getOrder() {
-		return 0;
-	}
 
 	@Bean
 	public Flyway flyway() {
