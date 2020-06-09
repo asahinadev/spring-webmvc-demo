@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @DependsOn({
 		"flyway"
 })
-public class JpaConfig {
+public class JpaRepositoriesConfig {
 
 }

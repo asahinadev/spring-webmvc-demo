@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @DependsOn({
 		"flyway"
 })
-public class DataConfig {
+public class EntityManagerConfig {
 
 	@Autowired
 	DataSource dataSource;
