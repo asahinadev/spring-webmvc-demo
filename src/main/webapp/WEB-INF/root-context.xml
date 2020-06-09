@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:jee="http://www.springframework.org/schema/jee"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/jee	    https://www.springframework.org/schema/jee/spring-jee.xsd
-        http://www.springframework.org/schema/util      https://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/data/jpa  https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 ">
-
-    <!-- Root Context: defines shared resources visible to all other web components -->
-	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/demo"/>
-
+<!-- no entry -->
 </beans>
