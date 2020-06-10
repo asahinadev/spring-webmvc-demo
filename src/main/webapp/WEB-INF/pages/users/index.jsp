@@ -1,6 +1,8 @@
 <!doctype html>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="ja" class="h-100">
@@ -55,8 +57,6 @@ code {
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-<!-- Custom styles for this template -->
-<link href="sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
 	<header>
@@ -101,23 +101,30 @@ code {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>id</td>
-						<td>username</td>
-						<td>email</td>
-						<td>created</td>
-						<td>updated</td>
-						<th>
-							<!--  --> <form:form
-								action="${pageContext.request.contextPath}/users/0" method="GET">
-								<button class="btn btn-primary btn-sm">new</button>
-							</form:form> <!--  --> <form:form
-								action="${pageContext.request.contextPath}/users/0"
-								method="DELETE">
-								<button class="btn btn-danger btn-sm">del</button>
-							</form:form>
-						</th>
-					</tr>
+					<c:forEach items="${list}" var="item">
+						<tr>
+							<td><c:out value="${item.id}" /></td>
+							<td><c:out value="${item.username}" /></td>
+							<td><c:out value="${item.email}" /></td>
+							<td><c:out value="${item.created}" /></td>
+							<td><c:out value="${item.updated}" /></td>
+							<th>
+								<div class="row">
+									<spring:url value="/users/${item.id}" var="url" />
+									<div class="col">
+										<form:form action="${url}" method="GET">
+											<button class="btn btn-primary btn-sm btn-block">mod</button>
+										</form:form>
+									</div>
+									<div class="col">
+										<form:form action="${url}" method="DELETE">
+											<button class="btn btn-danger btn-sm btn-block">del</button>
+										</form:form>
+									</div>
+								</div>
+							</th>
+						</tr>
+					</c:forEach>
 				</tbody>
 				<tfoot>
 					<tr>
@@ -126,11 +133,17 @@ code {
 						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 						<th>&nbsp;</th>
-						<th><form:form
-								action="${pageContext.request.contextPath}/users/create"
-								method="GET">
-								<button class="btn btn-primary btn-sm">new</button>
-							</form:form></th>
+						<th>
+							<div class="row">
+								<spring:url value="/users/create" var="url" />
+								<div class="col">
+									<form:form action="${url}" method="GET">
+										<button class="btn btn-primary btn-sm btn-block">new</button>
+									</form:form>
+								</div>
+								<div class="col"></div>
+							</div>
+						</th>
 					</tr>
 				</tfoot>
 			</table>

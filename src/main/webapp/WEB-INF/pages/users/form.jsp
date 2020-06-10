@@ -1,4 +1,8 @@
 <!doctype html>
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html lang="ja" class="h-100">
 <head>
 <meta charset="utf-8">
@@ -40,8 +44,7 @@ main>.container {
 }
 
 code {
-cc
-	font-size: 80%;
+	cc font-size: 80%;
 }
 </style>
 <meta name="theme-color" content="#563d7c">
@@ -52,8 +55,6 @@ cc
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
-<!-- Custom styles for this template -->
-<link href="sticky-footer-navbar.css" rel="stylesheet">
 </head>
 <body class="d-flex flex-column h-100">
 	<header>
@@ -86,19 +87,31 @@ cc
 	<!-- Begin page content -->
 	<main role="main" class="flex-shrink-0">
 		<div class="container">
-			<h1 class="mt-5">Sticky footer with fixed navbar</h1>
-			<p class="lead">
-				Pin a footer to the bottom of the viewport in desktop browsers with
-				this custom HTML and CSS. A fixed navbar has been added with
-				<code>padding-top: 60px;</code>
-				on the
-				<code>main &gt; .container</code>
-				.
-			</p>
-			<p>
-				Back to <a href="/docs/4.5/examples/sticky-footer/">the default
-					sticky footer</a> minus the navbar.
-			</p>
+			<spring:url value="?" var="url" htmlEscape="true" />
+			<form:form action="${url}" method="POST" modelAttribute="form">
+
+				<div class="form-group">
+					<label for="username">username</label>
+					<form:input path="username" disabled="false"
+						cssClass="form-control" cssErrorClass="form-control is-invalid" />
+					<form:errors path="username" cssClass="invalid-feedback" />
+				</div>
+				<div class="form-group">
+					<label for="email">email</label>
+					<form:input path="email" disabled="false" cssClass="form-control"
+						cssErrorClass="form-control is-invalid" />
+					<form:errors path="email" cssClass="invalid-feedback" />
+				</div>
+				<div class="form-group">
+					<label for="password">password</label>
+					<form:input path="password" disabled="false"
+						cssClass="form-control" cssErrorClass="form-control is-invalid" />
+					<form:errors path="password" cssClass="invalid-feedback" />
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary btn-block" formnovalidate>登録</button>
+				</div>
+			</form:form>
 		</div>
 	</main>
 

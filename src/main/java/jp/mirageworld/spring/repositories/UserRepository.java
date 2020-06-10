@@ -6,9 +6,9 @@ import org.springframework.data.repository.RepositoryDefinition;
 import jp.mirageworld.spring.entity.User;
 
 @RepositoryDefinition(
-		idClass = Long.class,
+		idClass = Integer.class,
 		domainClass = User.class)
 public interface UserRepository
-		extends JpaRepository<User, Long> {
+		extends JpaRepository<User, Integer> {
 
 }
