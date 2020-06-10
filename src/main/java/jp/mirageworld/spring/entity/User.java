@@ -41,6 +41,9 @@ public class User {
 	@Column(nullable = false)
 	String password;
 
+	@Column(nullable = false)
+	boolean enabled = false;
+
 	@CreatedDate
 	@Column(nullable = false)
 	LocalDateTime created;

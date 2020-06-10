@@ -10,12 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.mirageworld.spring.entity.User;
 import jp.mirageworld.spring.form.UserForm;
@@ -24,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping("/users")
 public class UserController {
 
 	final UserRepository repository;
@@ -34,7 +31,7 @@ public class UserController {
 		this.repository = repository;
 	}
 
-	@GetMapping
+	@GetMapping("/users")
 	public String index(Model model) {
 		List<User> users = repository.findAll();
 		log.debug("{}", users);
@@ -42,13 +39,13 @@ public class UserController {
 		return "users/index";
 	}
 
-	@GetMapping("create")
+	@GetMapping("/users/create")
 	public String create(@ModelAttribute("form") UserForm form) {
 		log.debug("{} ", form);
 		return "users/form";
 	}
 
-	@PostMapping("create")
+	@PostMapping("/users/create")
 	public String create(@Valid @ModelAttribute("form") UserForm form, BindingResult result) {
 		log.debug("{} ", form);
 		if (!result.hasErrors()) {
@@ -64,7 +61,7 @@ public class UserController {
 		return "users/form";
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("/users/{id}")
 	public String modify(@ModelAttribute("form") UserForm form, @PathVariable("id") Integer id) {
 		User user = repository.findById(id).get();
 		BeanUtils.copyProperties(user, form);
@@ -72,7 +69,7 @@ public class UserController {
 		return "users/form";
 	}
 
-	@PostMapping("{id}")
+	@PostMapping("/users/{id}")
 	public String modify(@ModelAttribute("form") UserForm form, BindingResult result, @PathVariable("id") Integer id) {
 		User user = repository.findById(id).get();
 		log.debug("{} ", form);
@@ -88,7 +85,25 @@ public class UserController {
 		return "users/form";
 	}
 
-	@DeleteMapping("{id}")
+	@PostMapping("/users/{id}/active")
+	public String active(@PathVariable("id") Integer id) {
+		User user = repository.findById(id).get();
+		user.setEnabled(true);
+		log.debug("{} ", user);
+		repository.save(user);
+		return "redirect:/users";
+	}
+
+	@PostMapping("/users/{id}/deactive")
+	public String deactive(@PathVariable("id") Integer id) {
+		User user = repository.findById(id).get();
+		user.setEnabled(false);
+		log.debug("{} ", user);
+		repository.save(user);
+		return "redirect:/users";
+	}
+
+	@PostMapping("/users/{id}/delete")
 	public String delete(@PathVariable("id") Integer id) {
 		User user = repository.findById(id).get();
 		log.debug("{} ", user);

@@ -109,7 +109,7 @@ code {
 					<form:errors path="password" cssClass="invalid-feedback" />
 				</div>
 				<div class="form-group">
-					<button class="btn btn-primary btn-block" formnovalidate>登録</button>
+					<button class="btn btn-primary btn-block" formnovalidate name="save">登録</button>
 				</div>
 			</form:form>
 		</div>
