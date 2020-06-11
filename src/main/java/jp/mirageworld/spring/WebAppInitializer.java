@@ -29,12 +29,12 @@ public class WebAppInitializer
 		return $(WebMvcConfig.class);
 	}
 
-	<T> T[] $(@SuppressWarnings("unchecked") T... objects) {
-		return objects;
+	String[] $(String... args) {
+		return args;
 	}
 
-	Class<?>[] $(Class<?>... objects) {
-		return objects;
+	Class<?>[] $(Class<?>... args) {
+		return args;
 	}
 
 }

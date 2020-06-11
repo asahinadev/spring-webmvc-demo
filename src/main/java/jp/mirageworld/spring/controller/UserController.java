@@ -34,7 +34,6 @@ public class UserController {
 	@GetMapping("/users")
 	public String index(Model model) {
 		List<User> users = repository.findAll();
-		log.debug("{}", users);
 		model.addAttribute("list", users);
 		return "users/index";
 	}

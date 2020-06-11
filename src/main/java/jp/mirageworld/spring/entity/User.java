@@ -17,16 +17,20 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "username" }),
 		@UniqueConstraint(columnNames = { "email" }),
 })
 @Entity(name = "user")
 @EntityListeners(AuditingEntityListener.class)
-public class User {
+public class User extends AbstractEntity<Integer> {
+
+	private static final long serialVersionUID = -7270310500627162236L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

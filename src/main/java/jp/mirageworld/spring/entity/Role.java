@@ -13,14 +13,18 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Table(name = "roles", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "name" }),
 })
 @Entity(name = "roles")
-public class Role {
+public class Role extends AbstractEntity<Integer> {
+
+	private static final long serialVersionUID = -831609121631617496L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +34,9 @@ public class Role {
 	String name;
 
 	@ManyToMany
-	@JoinTable(
-			name = "user_roles",
-			joinColumns = {
-					@JoinColumn(name = "role_id")
-			},
-			inverseJoinColumns = {
-					@JoinColumn(name = "user_id")
-			})
+	@JoinTable(name = "user_roles",
+			joinColumns = @JoinColumn(name = "role_id"),
+			inverseJoinColumns = @JoinColumn(name = "user_id"))
 	List<User> users;
 
 }
