@@ -1,0 +1,93 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'eclipse'
+}
+
+group = 'jp.mirageworld.spring'
+version = '0.0.1-SNAPSHOT'
+
+description = """spring-webmvc-demo Maven Webapp"""
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+	annotationProcessor
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.2.7.RELEASE'
+    implementation group: 'org.springframework', name: 'spring-aspects', version: '5.2.7.RELEASE'
+    implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.3.1.RELEASE'
+    
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.18.Final'
+    implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.5.Final'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'taglibs', name: 'standard', version: '1.1.2'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.10'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '6.5.0'
+
+    providedCompile group: 'org.apache.tomcat', name: 'tomcat-catalina', version: '9.0.36'
+    
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+	testImplementation group: 'org.springframework', name: 'spring-test', version: '5.2.7.RELEASE'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.2'
+    
+    
+
+}
+
+tasks.eclipse.doFirst {
+
+    File buildship = file(".settings/org.eclipse.buildship.core.prefs")
+    delete buildship
+    buildship.append('''# create by build.gradle
+
+build.commands=org.eclipse.jdt.core.javabuilder,org.eclipse.wst.common.project.facet.core.builder,org.eclipse.wst.validation.validationbuilder
+connection.arguments=
+connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
+connection.java.home=null
+connection.jvm.arguments=
+connection.project.dir=
+derived.resources=.gradle,build
+eclipse.preferences.version=1
+natures=org.eclipse.jdt.core.javanature,org.eclipse.wst.common.project.facet.core.nature,org.eclipse.wst.common.modulecore.ModuleCoreNature,org.eclipse.jem.workbench.JavaEMFNature
+project.path=\\:
+
+'''. stripIndent())
+
+    File resources= file(".settings/org.eclipse.core.resources.prefs")
+    delete resources 
+    resources.append('''# creatae by build.gradle
+
+eclipse.preferences.version=1
+encoding/<project>=UTF-8
+
+'''. stripIndent())
+
+    File apt= file(".settings/org.eclipse.jdt.apt.core.prefs")
+    apt resources 
+    apt.append('''# creatae by build.gradle
+
+eclipse.preferences.version=1
+org.eclipse.jdt.apt.aptEnabled=true
+org.eclipse.jdt.apt.genSrcDir=.apt_generated
+org.eclipse.jdt.apt.genTestSrcDir=.apt_generated_tests
+org.eclipse.jdt.apt.reconcileEnabled=true
+
+'''. stripIndent())
+
+}
+

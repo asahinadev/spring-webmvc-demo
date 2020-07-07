@@ -1,5 +1,18 @@
-/target/
-/.springBeans
-/.settings/
-/.factorypath
-/.classpath
+# directory
+/target
+/.settings
+/bin
+/.gradle
+
+# extension
+*.log
+
+# file
+.project
+.classpath
+.springBeans
+.factorypath
+pom.xml
+/.apt_generated/
+/.apt_generated_tests/
+/build/
