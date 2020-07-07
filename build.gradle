@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'war'
 	id 'eclipse'
+	id "com.avast.gradle.docker-compose" version "0.12.1"
 }
 
 group = 'jp.mirageworld.spring'
